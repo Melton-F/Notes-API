@@ -1,5 +1,4 @@
 import Note from "../model/noteModel"
-import Label from "../../labels/model/labelModel"
 
 export const createNote = async(req, res)=>{
     try {
@@ -40,8 +39,8 @@ export const showNotes = async(req, res)=>{
 
 export const updateLabel = async(req, res)=>{
     try {
-        let emptyArr = []
         const note = await Note.findById(req.body.notesId)
+        let emptyArr =  note.labelId
         let check = note.labelId.includes(req.body.labelId)
         if(!check){
             emptyArr.push(req.body.labelId)

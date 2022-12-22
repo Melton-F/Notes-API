@@ -36,3 +36,22 @@ export const showLabels = async (req, res)=>{
         })
     }
 }
+
+export const updateLabel = async(req, res)=>{
+    try {
+        const label = await Label.findByIdAndUpdate(req.params.id, req.body, {new:true})
+        // console.log(label);
+        if(label){
+            res.status(201).json({
+                status:"Success",
+                message:"Successfully updated",
+                updated_data:label
+            })
+        }
+    } catch (error) {
+        res.status(500).json({
+            status:"Fail",
+            message:error.message
+        })
+    }
+}
