@@ -26,6 +26,10 @@ const userAuthSchema = new mongoose.Schema({
         //     },
         //     message:'passwords are not same'
         // }
+    },
+    logged_in:{
+        type:Boolean,
+        default:false
     }
 
 }, {versionKey:false})

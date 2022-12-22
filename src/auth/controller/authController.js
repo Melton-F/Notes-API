@@ -37,13 +37,14 @@ export const login = async (req, res)=>{
     try {
         const user = await User.findOne({user_name:req.body.user_name})
         if(user){
-            bcrypt.compare(req.body.password, user.password, (err, result)=>{
+            bcrypt.compare(req.body.password, user.password, async (err, result)=>{
                 if(err){
                     return res.status(401).json({
                         message:"Auth failed"
                     })
                 }
                 else{
+                    await User.findOneAndUpdate({user_name:req.body.user_name}, {logged_in:true}, {new:true})
                     res.status(200).json({
                         message:"Auth successfull"
                     })
@@ -55,6 +56,17 @@ export const login = async (req, res)=>{
                 message:"user not found"
             })
         }
+    } catch (error) {
+        res.send(error.message)
+    }
+}
+
+export const signOut = async(req,res)=>{
+    try {
+        await User.findOneAndUpdate({user_name:req.params.user_name}, {logged_in:false}, {new:true})
+        res.status(200).json({
+            message:"Signed out successfully"
+        })
     } catch (error) {
         res.send(error.message)
     }

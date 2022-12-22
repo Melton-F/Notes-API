@@ -9,6 +9,9 @@ const noteSchema = new mongoose.Schema({
     },
     labelId: [{
         type:String
+    }],
+    task: [{
+        type:String
     }]
 }, {versionKey:false})
 

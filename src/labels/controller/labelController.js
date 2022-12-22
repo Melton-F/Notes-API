@@ -37,7 +37,7 @@ export const showLabels = async (req, res)=>{
     }
 }
 
-export const updateLabel = async(req, res)=>{
+export const editLabels = async(req, res)=>{
     try {
         const label = await Label.findByIdAndUpdate(req.params.id, req.body, {new:true})
         // console.log(label);

@@ -66,7 +66,6 @@ export const updateLabel = async(req, res)=>{
 export const showNotesByLabel = async(req, res)=>{
     try {
         const notes = await Note.find({labelId:req.params.id})
-        // console.log(notes);
         if(notes<1){
             return res.status(404).json({
                 message:"no notes found in this label"
@@ -80,6 +79,58 @@ export const showNotesByLabel = async(req, res)=>{
         })
     } catch (error) {
         res.status(400).json({
+            status:"Fail",
+            message:error.message
+        })
+    }
+}
+
+export const editNotes = async(req, res)=>{
+    try {
+        const note = await Note.findByIdAndUpdate(req.params.id, req.body, {new:true})
+        res.status(201).json({
+            status:"success",
+            message:"notes updated successfully",
+            updated_notes:note
+        })
+    } catch (error) {
+        res.status(500).json({
+            status:"Fail",
+            message:error.message
+        })
+    }
+}
+
+export const updateTask = async(req, res)=>{
+    try {
+        const note = await Note.findById(req.body.notes_id)
+        let taskArr = note.task
+        taskArr.push(req.body.add_task)
+        // console.log(taskArr);
+        let updateTask = await Note.findByIdAndUpdate(req.body.notes_id, {task:taskArr}, {new:true})
+        if(updateTask){
+            res.status(201).json({
+                status:"success",
+                message:"task updated successfully in this notes",
+                updated_notes:updateTask
+            })
+        }
+    } catch (error) {
+        res.status(500).json({
+            status:"Fail",
+            message:error.message
+        })
+    }
+}
+
+export const deleteNotes = async(req, res)=>{
+    try {
+        await Note.deleteOne({_id:req.params.id})
+        res.status(204).json({
+            message:"deleted successfully"
+        })
+    } catch (error) {
+        res.status(500).json({
             status:"Fail",
             message:error.message
         })
