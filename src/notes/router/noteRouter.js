@@ -6,8 +6,8 @@ router.post("/create-note", createNote)
 router.get("/show-notes", showNotes)
 router.patch("/update-labels-in-notes", updateLabel)
 router.get("/show-notes-by-label/:id", showNotesByLabel)
-router.patch("/update-task-in-notes", updateTask)
 router.patch("/edit-notes/:id", editNotes)
+router.patch("/update-task-in-notes", updateTask)
 router.delete("/delete-note/:id", deleteNotes)
 
 module.exports = router

@@ -127,7 +127,7 @@ export const updateTask = async(req, res)=>{
 export const deleteNotes = async(req, res)=>{
     try {
         await Note.deleteOne({_id:req.params.id})
-        res.status(204).json({
+        res.status(200).json({
             message:"deleted successfully"
         })
     } catch (error) {
