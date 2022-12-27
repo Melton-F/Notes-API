@@ -19,12 +19,13 @@ export const createNote = async(req, res)=>{
 export const showNotes = async(req, res)=>{
     try {
         const notes = await Note.find()
+        // console.log("Hiii");
         if(notes<1){
             return res.status(404).json({
                 message:"notes not available"
             })
         }
-        res.status(200).json({
+        return res.status(200).json({
             status:"Success",
             note_counts:notes.length,
             notes:notes

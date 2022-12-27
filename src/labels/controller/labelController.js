@@ -55,3 +55,17 @@ export const editLabels = async(req, res)=>{
         })
     }
 }
+
+export const deleteLabel = async(req, res)=>{
+    try {
+        await Label.deleteOne({label_name:req.params.label_name})
+        res.status(204).json({
+            message:"label deleted successfully"
+        })
+    } catch (error) {
+        res.status(500).json({
+            status:"Fail",
+            message:error.message
+        })
+    }
+}
