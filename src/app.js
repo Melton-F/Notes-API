@@ -12,19 +12,8 @@ app.use('/api/notes/auth', authRouter)
 app.use('/api/notes/labels', labelRouter)
 app.use('/api/notes/note-works', noteRouter)
 
-app.post('/test', (req, res)=>{
-    const {password, userName} = req.body
-    if(!password || !userName){
-        return res.status(400).json({message:"message"})
-    }
-    res.status(200).json({
-        message:"user created",
-        _id: 0
-    })
-})
-
 app.all("*", (req, res, next)=>{
-    res.send("Invalid url")
+    res.status(404).send("Invalid url")
 })
 
 module.exports = app

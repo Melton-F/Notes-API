@@ -4,7 +4,7 @@ const router = express.Router()
 
 router.post('/signup', signup)
 router.post('/login', login)
-router.post('/sign-out/:user_name', signOut)
+router.post('/sign-out', signOut)
 router.get('/current-user/:id', showUser)
 
 module.exports = router

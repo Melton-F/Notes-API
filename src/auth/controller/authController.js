@@ -63,7 +63,7 @@ export const login = async (req, res)=>{
 
 export const signOut = async(req,res)=>{
     try {
-        await User.findOneAndUpdate({user_name:req.params.user_name}, {logged_in:false}, {new:true})
+        await User.findOneAndUpdate({user_name:req.body.user_name}, {logged_in:false}, {new:true})
         res.status(200).json({
             message:"Signed out successfully"
         })

@@ -48,12 +48,12 @@ export const updateLabel = async(req, res)=>{
             const updation = await Note.findByIdAndUpdate(req.body.notesId, {labelId:emptyArr}, {new:true})
             return res.status(201).json({
                 status:"Success",
-                message:`label added in your note(${note.Title}) successfully`
+                message:`label added in your notes successfully`
             })
         }
         else{
             res.status(400).json({
-                message:"Sorry... lable already exists in your notes"
+                message:"Sorry... label already exists in your notes"
             })
         }
     } catch (error) {
