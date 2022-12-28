@@ -13,7 +13,7 @@ app.use('/api/notes/labels', labelRouter)
 app.use('/api/notes/note-works', noteRouter)
 
 app.all("*", (req, res, next)=>{
-    res.status(404).send("Invalid url")
+    res.status(400).send("Invalid url")
 })
 
 module.exports = app

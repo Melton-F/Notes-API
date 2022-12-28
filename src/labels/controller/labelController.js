@@ -20,7 +20,7 @@ export const showLabels = async (req, res)=>{
     try {
         const labels = await Label.find()
         if(labels<1){
-            return res.status(200).json({
+            return res.status(404).json({
                 message:"labels not found"
             })
         }
@@ -39,13 +39,18 @@ export const showLabels = async (req, res)=>{
 
 export const editLabels = async(req, res)=>{
     try {
-        const label = await Label.findByIdAndUpdate(req.params.id, req.body, {new:true})
+        const label = await Label.findByIdAndUpdate(req.params.id, {label_name:req.body.label_name}, {new:true})
         // console.log(label);
-        if(label){
+        if(label!=null){
+            // console.log(label);
             res.status(201).json({
                 status:"Success",
                 message:"Successfully updated",
                 updated_data:label
+            })
+        }else{
+            res.status(404).json({
+                message:"Id unavailabe or unknown id"
             })
         }
     } catch (error) {
@@ -58,7 +63,13 @@ export const editLabels = async(req, res)=>{
 
 export const deleteLabel = async(req, res)=>{
     try {
-        await Label.deleteOne({label_name:req.params.label_name})
+        const deletion = await Label.deleteOne({label_name:req.params.label_name})
+        // console.log(deletion);
+        if(deletion.deletedCount === 0){
+            return res.status(404).json({
+                message:"data has been deleted already"
+            })
+        }
         res.status(200).json({
             status:"Success",
             message:"label deleted successfully"

@@ -28,7 +28,7 @@ export const signup = (req, res, next)=>{
             }
         })
     } catch (error) {
-        res.send(error.message)
+        res.status(500).send(error.message)
     }
 }
 
@@ -68,7 +68,7 @@ export const signOut = async(req,res)=>{
             message:"Signed out successfully"
         })
     } catch (error) {
-        res.send(error.message)
+        res.status(500).send(error.message)
     }
 }
 

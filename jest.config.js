@@ -1,4 +1,4 @@
 module.exports = {
-  testTimeout: 30000,
+  testTimeout: 60000,
 };
 // jest.setTimeout(30000);

@@ -9,6 +9,7 @@ describe("To check the NOTES APIs", ()=>{
             labelId:"63a52b9ca1f2e0e202a6405b",
             notesId:"63aafea1c1d0c0a488a436b9"
         })
+        
         if(response.status === 201){
             expect(response.statusCode).toBe(201)
             expect(response._body.status).toMatch("Success")
@@ -18,6 +19,10 @@ describe("To check the NOTES APIs", ()=>{
             expect(response.statusCode).toBe(400)
             expect(response._body.message).toMatch("Sorry... label already exists in your notes")
         }
-        // console.log(response);
+        if(response.status === 500){
+            expect(response.statusCode).toBe(500)
+            expect(response._body.status).toMatch("Fail")
+        }
+        
     })
 })

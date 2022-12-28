@@ -9,7 +9,7 @@ export const createNote = async(req, res)=>{
             created_note:note
         })
     } catch (error) {
-        res.status(400).json({
+        res.status(500).json({
             status:"Fail",
             message:error.message
         })
@@ -79,7 +79,7 @@ export const showNotesByLabel = async(req, res)=>{
             notes:notes
         })
     } catch (error) {
-        res.status(400).json({
+        res.status(500).json({
             status:"Fail",
             message:error.message
         })
@@ -126,9 +126,16 @@ export const updateTask = async(req, res)=>{
 
 export const deleteNotes = async(req, res)=>{
     try {
-        await Note.deleteOne({_id:req.params.id})
+        const deletion = await Note.deleteOne({_id:req.params.id})
+        // console.log(deletion);
+        if(deletion.deletedCount === 0){
+            return res.status(404).json({
+                message:"data has been deleted already"
+            })
+        }
         res.status(200).json({
-            message:"deleted successfully"
+            status:"Success",
+            message:"notes deleted successfully"
         })
     } catch (error) {
         res.status(500).json({
