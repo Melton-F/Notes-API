@@ -1,4 +1,9 @@
+/** @type {import('jest').Config} */
 module.exports = {
-  testTimeout: 60000,
+  testTimeout: 30000,
+  // verbose: true,
+  testMatch: [
+    "<rootDir>/test/test-helper/**.js"
+  ],
+  testEnvironment: 'node',
 };
-// jest.setTimeout(30000);
