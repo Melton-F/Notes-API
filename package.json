@@ -4,7 +4,7 @@
   "description": "notes app with API",
   "main": "index.js",
   "scripts": {
-    "test": "jest --watchAll --runInBand",
+    "test": "jest --watchAll",
     "build": "babel src -d lib",
     "start": "babel src -d lib && nodemon lib/server.js",
     "serve": "nodemon --exec babel-node src/server.js"
