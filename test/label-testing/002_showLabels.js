@@ -1,6 +1,6 @@
 import request from "supertest";
 import app from "../../src/app";
-require("../../src/mongooseConnect")
+// require("../../src/mongooseConnect")
 
 // describe("To check the Label APIs", ()=>{
 //     test("POST show label API", async()=>{

@@ -1,6 +1,6 @@
 import request from "supertest";
 import app from "../../src/app";
-require("../../src/mongooseConnect")
+// require("../../src/mongooseConnect")
 
 // describe("To check the NOTES APIs", ()=>{
 //     test("DELETE delete or remove notes API", async()=>{

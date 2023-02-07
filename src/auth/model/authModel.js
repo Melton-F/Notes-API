@@ -30,6 +30,9 @@ const userAuthSchema = new mongoose.Schema({
     logged_in:{
         type:Boolean,
         default:false
+    },
+    auth_token:{
+        type:String
     }
 
 }, {versionKey:false})

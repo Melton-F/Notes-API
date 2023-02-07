@@ -1,4 +1,4 @@
-// require("../../src/mongooseConnect")
+require("../../src/mongooseConnect")
 import {signup} from "../auth-testing/001_signup"
 import {login} from "../auth-testing/002_login"
 import {signout} from "../auth-testing/003_signout"

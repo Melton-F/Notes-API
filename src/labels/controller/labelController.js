@@ -24,6 +24,39 @@ export const showLabels = async (req, res)=>{
                 message:"labels not found"
             })
         }
+        console.log(req.headers.authorization.split(" ")[1])
+        res.status(200).json({
+            status:"Success",
+            label_counts:labels.length,
+            labels:labels
+        })
+    } catch (error) {
+        res.status(400).json({
+            status:"Fail",
+            message:error.message
+        })
+    }
+}
+
+
+export const showLabelsBySearch = async (req, res)=>{
+    try {
+        const labels = await Label.find({label_name: new RegExp(`^${req.query.search}$`, 'i')})
+        // let emptArr = []
+        // for(let i=0;i<labels.length;i++){
+        //     // console.log(labels[i].label_name);
+        //     emptArr.push(labels[i].label_name)
+        //     if(i===labels.length-1){
+        //         console.log(emptArr);
+        //     }
+        // }
+        res.melton = "good boy"
+        console.log(res);
+        if(labels<1){
+            return res.status(404).json({
+                message:"labels not found"
+            })
+        }
         res.status(200).json({
             status:"Success",
             label_counts:labels.length,
